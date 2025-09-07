@@ -1,10 +1,9 @@
 import { useGSAP } from "@gsap/react";
-import { navLinks } from "../../constansts";
+import { navLinks } from "../../constants";
 import gsap from "gsap";
 
 const Navbar = () => {
   useGSAP(() => {
-    // eslint-disable-next-line no-unused-vars
     const navTween = gsap.timeline({
       scrollTrigger: {
         trigger: "nav",
@@ -17,7 +16,7 @@ const Navbar = () => {
       { backgroundColor: "transparent" },
       {
         backgroundColor: "#00000050",
-        backgroundFilter: "blur(10px)",
+        backdropFilter: "blur(10px)",
         duration: 1,
         ease: "power1.inOut",
       }

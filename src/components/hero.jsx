@@ -22,36 +22,26 @@ const Hero = () => {
     heroSplit.chars.forEach((char) => char.classList.add("text-gradient"));
 
     gsap.from(heroSplit.chars, {
-      yPercent: 100,
-      duration: 1.8,
+      yPercent: 30,
+      duration: 1.5,
       ease: "expo.out",
-      stagger: 0.06,
+      stagger: 0.02,
     });
 
     gsap.from(paragraphSplit.lines, {
       opacity: 0,
       yPercent: 100,
-      duration: 1.8,
+      duration: 1.5,
       ease: "expo.out",
       stagger: 0.06,
-      delay: 1,
+      delay: 0.5,
     });
 
-    gsap
-      .timeline({
-        scrollTrigger: {
-          trigger: "#hero",
-          start: "top top",
-          end: "bottom top",
-          scrub: true,
-        },
-      })
-      .to(".right-leaf", { y: 200 }, 0)
-      .to(".left-leaf", { y: -200 }, 0)
-      .to(".arrow", { y: 100 }, 0);
+    gsap.to(".right-leaf", { x: 200, duration: 1.5, ease: "power1.inOut" });
+    gsap.to(".left-leaf", { x: -200, duration: 1.5, ease: "power1.inOut" });
 
     const startValue = isMobile ? "top 50%" : "center 60%";
-    const endValue = isMobile ? "120% top" : "bottom top";
+    const endValue = isMobile ? "100% top" : "bottom top";
 
     let tl = gsap.timeline({
       scrollTrigger: {
@@ -60,6 +50,7 @@ const Hero = () => {
         end: endValue,
         scrub: true,
         pin: true,
+        markers:true
       },
     });
 
@@ -88,7 +79,6 @@ const Hero = () => {
         />
 
         <div className="body">
-          {/* <img src="/images/arrow.png" alt="arrow" className="arrow" /> */}
 
           <div className="content">
             <div className="space-y-5 hidden md:block">
