@@ -7,58 +7,64 @@ import { useMediaQuery } from "react-responsive";
 const Hero = () => {
   const videoRef = useRef();
 
-  const isMobile = useMediaQuery({ maxWidth: 767 });
+  const isMobile = useMediaQuery({ maxWidth: 1024 }); // mobile + tablet
 
   useGSAP(() => {
-    const heroSplit = new SplitText(".title", {
-      type: "chars, words",
-    });
+    if (!isMobile) {
+      // Desktop / non-mobile behavior
+      const startValue = "center 60%";
+      const endValue = "bottom top";
 
-    const paragraphSplit = new SplitText(".subtitle", {
-      type: "lines",
-    });
-
-    // Apply text-gradient class once before animating
-    heroSplit.chars.forEach((char) => char.classList.add("text-gradient"));
-
-    gsap.from(heroSplit.chars, {
-      yPercent: 30,
-      duration: 1.5,
-      ease: "expo.out",
-      stagger: 0.02,
-    });
-
-    gsap.from(paragraphSplit.lines, {
-      opacity: 0,
-      yPercent: 100,
-      duration: 1.5,
-      ease: "expo.out",
-      stagger: 0.06,
-      delay: 0.5,
-    });
-
-    gsap.to(".right-leaf", { x: 200, duration: 1.5, ease: "power1.inOut" });
-    gsap.to(".left-leaf", { x: -200, duration: 1.5, ease: "power1.inOut" });
-
-    const startValue = isMobile ? "top 50%" : "center 60%";
-    const endValue = isMobile ? "100% top" : "bottom top";
-
-    let tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: "video",
-        start: startValue,
-        end: endValue,
-        scrub: true,
-        pin: true,
-        markers:true
-      },
-    });
-
-    videoRef.current.onloadedmetadata = () => {
-      tl.to(videoRef.current, {
-        currentTime: videoRef.current.duration,
+      let tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: videoRef.current,
+          start: startValue,
+          end: endValue,
+          scrub: true,
+          pin: true,
+          markers: true,
+        },
       });
-    };
+
+      videoRef.current.onloadedmetadata = () => {
+        tl.to(videoRef.current, { currentTime: videoRef.current.duration });
+      };
+    } else {
+      // Mobile / tablet behavior: just play the video normally
+      videoRef.current.autoplay = true;
+      videoRef.current.loop = true;
+      videoRef.current.muted = true; // required for autoplay on mobile
+      videoRef.current.play().catch(() => {
+        console.warn("Autoplay blocked on mobile, user interaction required.");
+      });
+    }
+
+    // Wait for fonts to load before splitting text
+    document.fonts.ready.then(() => {
+      const heroSplit = new SplitText(".title", { type: "chars, words" });
+      const paragraphSplit = new SplitText(".subtitle", { type: "lines" });
+
+      heroSplit.chars.forEach((char) => char.classList.add("text-gradient"));
+
+      gsap.from(heroSplit.chars, {
+        yPercent: 30,
+        duration: 1.5,
+        ease: "expo.out",
+        stagger: 0.02,
+      });
+
+      gsap.from(paragraphSplit.lines, {
+        opacity: 0,
+        yPercent: 100,
+        duration: 1.5,
+        ease: "expo.out",
+        stagger: 0.06,
+        delay: 0.5,
+      });
+
+      gsap.to(".right-leaf", { x: 200, duration: 1.5, ease: "power1.inOut" });
+      gsap.to(".left-leaf", { x: -200, duration: 1.5, ease: "power1.inOut" });
+    });
   }, []);
 
   return (
@@ -79,13 +85,14 @@ const Hero = () => {
         />
 
         <div className="body">
-
           <div className="content">
             <div className="space-y-5 hidden md:block">
               <p>Cool. Crisp. Classic.</p>
-              <p className="subtitle">
-                Sip the Spirit <br /> of Summer
-              </p>
+              <div className="cta">
+                <a href="#cocktails" className="subtitle">
+                  View cocktails
+                </a>
+              </div>
             </div>
 
             <div className="view-cocktails">
@@ -94,7 +101,6 @@ const Hero = () => {
                 creative flair, and timeless recipes — designed to delight your
                 senses.
               </p>
-              <a href="#cocktails">View cocktails</a>
             </div>
           </div>
         </div>

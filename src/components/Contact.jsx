@@ -5,45 +5,48 @@ import gsap from "gsap";
 
 const Contact = () => {
   useGSAP(() => {
-    const titleSplit = SplitText.create("#contact h2", { type: "words" });
+    // Wait for all fonts to be loaded
+    document.fonts.ready.then(() => {
+      const titleSplit = SplitText.create("#contact h2", { type: "words" });
 
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: "#contact",
-        start: "20% center", // animation starts very early
-        end: "center 50%", // finishes almost immediately as it enters
-      },
-      ease: "power1.inOut",
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: "#contact",
+          start: "20% center",
+          end: "center 50%",
+        },
+        ease: "power1.inOut",
+      });
+
+      // Fade in the content
+      tl.from("#contact .content", { opacity: 0, y: 50, duration: 1 });
+
+      // Animate title words
+      tl.from(
+        titleSplit.words,
+        { opacity: 0, yPercent: 100, stagger: 0.02 },
+        0.1
+      );
+
+      // Animate all headings and paragraphs
+      tl.from(
+        "#contact h3, #contact p",
+        { opacity: 0, yPercent: 100, stagger: 0.05 },
+        0.2
+      );
+
+      // Animate leaves moving out
+      tl.to(
+        "#f-left-leaf",
+        { x: -200, y: -50, opacity: 0, duration: 1, ease: "power1.out" },
+        0
+      );
+      tl.to(
+        "#f-right-leaf",
+        { x: 200, y: -50, opacity: 0, duration: 1, ease: "power1.out" },
+        0
+      );
     });
-
-    // Fade in the content
-    tl.from("#contact .content", { opacity: 0, y: 50, duration: 1 });
-
-    // Animate title words
-    tl.from(
-      titleSplit.words,
-      { opacity: 0, yPercent: 100, stagger: 0.02 },
-      0.1
-    );
-
-    // Animate all headings and paragraphs
-    tl.from(
-      "#contact h3, #contact p",
-      { opacity: 0, yPercent: 100, stagger: 0.05 },
-      0.2
-    );
-
-    // Animate leaves moving out
-    tl.to(
-      "#f-left-leaf",
-      { x: -200, y: -50, opacity: 0, duration: 1, ease: "power1.out" },
-      0
-    );
-    tl.to(
-      "#f-right-leaf",
-      { x: 200, y: -50, opacity: 0, duration: 1, ease: "power1.out" },
-      0
-    );
   });
 
   return (

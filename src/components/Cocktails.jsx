@@ -10,7 +10,7 @@ const Cocktails = () => {
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: "#cocktails",
-        start: "20% center", // animation starts very early
+        start: "18% center", // animation starts very early
         end: "center 50%", // finishes almost immediately as it enters
         markers: true,
         scrub: true,
