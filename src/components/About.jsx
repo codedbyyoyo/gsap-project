@@ -22,25 +22,12 @@ const About = () => {
       "-=0.5"
     );
 
-    // Wait for all fonts to be loaded
-    document.fonts.ready.then(() => {
-      // Split the heading into words after fonts are ready
-      const titleSplit = SplitText.create("#about h2", { type: "words" });
-
-      scrollTimeline.from(titleSplit.words, {
-        opacity: 0,
-        duration: 1,
-        yPercent: 100,
-        ease: "expo.out",
-        stagger: 0.02,
-      });
-    });
   });
 
   return (
     <div id="about">
       <div className="mb-16 md:px-0 px-5">
-        <div className="content">
+        <div className="content md:col-span-8">
           <div className="md:col-span-8">
             <p className="badge">Best Cocktails</p>
             <h2>
@@ -71,29 +58,29 @@ const About = () => {
       <div className="top-grid">
         <div className="md:col-span-3">
           <div className="noisy" />
-          <img src="/images/abt1.png" alt="grid-img-1" />
+          <img src="/images/abt1.webp" alt="grid-img-1" />
         </div>
 
         <div className="md:col-span-6">
           <div className="noisy" />
-          <img src="/images/abt2.png" alt="grid-img-2" />
+          <img src="/images/abt2.webp" alt="grid-img-2" />
         </div>
 
         <div className="md:col-span-3">
           <div className="noisy" />
-          <img src="/images/abt5.png" alt="grid-img-5" />
+          <img src="/images/abt5.webp" alt="grid-img-5" />
         </div>
       </div>
 
       <div className="bottom-grid">
         <div className="md:col-span-8">
           <div className="noisy" />
-          <img src="/images/abt3.png" alt="grid-img-3" />
+          <img src="/images/abt3.webp" alt="grid-img-3" />
         </div>
 
         <div className="md:col-span-4">
           <div className="noisy" />
-          <img src="/images/abt4.png" alt="grid-img-4" />
+          <img src="/images/abt4.webp" alt="grid-img-4" />
         </div>
       </div>
     </div>

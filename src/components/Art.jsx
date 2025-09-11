@@ -34,7 +34,7 @@ const Art = () => {
 		 <ul className="space-y-4 will-fade">
 			{goodLists.map((feature, index) => (
 			 <li key={index} className="flex items-center gap-2">
-				<img src="/images/check.png" alt="check" />
+				<img src="/images/check.webp" alt="check" />
 				<p>{feature}</p>
 			 </li>
 			))}
@@ -42,7 +42,7 @@ const Art = () => {
 		 
 		 <div className="cocktail-img">
 			<img
-				src="/images/under-img.jpg"
+				src="/images/under-img.webp"
 				alt="cocktail"
 				className="abs-center masked-img size-full object-contain"
 			/>
@@ -51,7 +51,7 @@ const Art = () => {
 		 <ul className="space-y-4 will-fade">
 			{featureLists.map((feature, index) => (
 			 <li key={index} className="flex items-center justify-start gap-2">
-				<img src="/images/check.png" alt="check" />
+				<img src="/images/check.webp" alt="check" />
 				<p className="md:w-fit w-60">{feature}</p>
 			 </li>
 			))}
@@ -62,7 +62,7 @@ const Art = () => {
 		 <h2 className="will-fade">Sip-Worthy Perfection</h2>
 		 <div id="masked-content">
 			<h3>Made with Craft, Poured with Passion</h3>
-			<p>This isn’t just a drink. It’s a carefully crafted moment made just for you.</p>
+			<p>This isn't just a drink. It's a carefully crafted moment made just for you.</p>
 		 </div>
 		</div>
 	 </div>

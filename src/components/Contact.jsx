@@ -6,60 +6,60 @@ import gsap from "gsap";
 const Contact = () => {
   useGSAP(() => {
     // Wait for all fonts to be loaded
-    document.fonts.ready.then(() => {
-      const titleSplit = SplitText.create("#contact h2", { type: "words" });
+    const titleSplit = SplitText.create("#contact h2", { type: "words" });
 
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: "#contact",
-          start: "20% center",
-          end: "center 50%",
-        },
-        ease: "power1.inOut",
-      });
-
-      // Fade in the content
-      tl.from("#contact .content", { opacity: 0, y: 50, duration: 1 });
-
-      // Animate title words
-      tl.from(
-        titleSplit.words,
-        { opacity: 0, yPercent: 100, stagger: 0.02 },
-        0.1
-      );
-
-      // Animate all headings and paragraphs
-      tl.from(
-        "#contact h3, #contact p",
-        { opacity: 0, yPercent: 100, stagger: 0.05 },
-        0.2
-      );
-
-      // Animate leaves moving out
-      tl.to(
-        "#f-left-leaf",
-        { x: -200, y: -50, opacity: 0, duration: 1, ease: "power1.out" },
-        0
-      );
-      tl.to(
-        "#f-right-leaf",
-        { x: 200, y: -50, opacity: 0, duration: 1, ease: "power1.out" },
-        0
-      );
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: "#contact",
+        start: "20% center",
+        end: "center 50%",
+      },
+      ease: "power1.inOut",
     });
+
+    // Fade in the content
+    tl.from("#contact .content", { opacity: 0, y: 50, duration: 1 });
+
+    // Animate title words
+    tl.from(
+      titleSplit.words,
+      { opacity: 0, yPercent: 100, stagger: 0.02 },
+      0.1
+    );
+
+    // Animate all headings and paragraphs
+    tl.from(
+      "#contact h3, #contact p",
+      { opacity: 0, yPercent: 100, stagger: 0.05 },
+      0.2
+    );
+
+    // Animate leaves moving out
+    tl.to(
+      "#f-left-leaf",
+      { x: -200, y: -50, opacity: 0, duration: 1, ease: "power1.out" },
+      0
+    );
+    tl.to(
+      "#f-right-leaf",
+      { x: 200, y: -50, opacity: 0, duration: 1, ease: "power1.out" },
+      0
+    );
   });
 
   return (
     <footer id="contact">
       <img
-        src="/images/footer-right-leaf.png"
+        src="/images/footer-right-leaf.webp"
         alt="leaf-right"
         id="f-right-leaf"
+        loading="lazy"
       />
       <img
-        src="/images/footer-left-leaf.png"
+        src="/images/footer-left-leaf.webp"
         alt="leaf-left"
         id="f-left-leaf"
+        loading="lazy"
       />
 
       <div className="content">
@@ -97,7 +97,7 @@ const Contact = () => {
                 rel="noopener noreferrer"
                 aria-label={social.name}
               >
-                <img src={social.icon} />
+                <img src={social.icon} alt={social.alt} />
               </a>
             ))}
           </div>
