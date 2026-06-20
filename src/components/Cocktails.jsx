@@ -12,7 +12,7 @@ const Cocktails = () => {
         trigger: "#cocktails",
         start: "18% center",
         end: "center 50%",
-        markers: true,
+        markers: false,
         scrub: true,
       },
     });

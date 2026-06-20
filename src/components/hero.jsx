@@ -22,7 +22,6 @@ const Hero = () => {
           end: endValue,
           scrub: true,
           pin: true,
-          markers: true,
         },
       });
 

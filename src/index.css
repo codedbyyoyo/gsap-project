@@ -103,7 +103,7 @@ body {
         @apply flex lg:flex-row flex-col-reverse w-full gap-10 justify-between items-center lg:items-end mx-auto;
 
         .cta {
-          @apply flex justify-center items-center font-modern-negra text-6xl text-yellow-200 hover:text-yellow-300 active:text-yellow transition-colors duration-300 max-w-xl max-lg:hidden tracking-wider;
+          @apply flex justify-center items-center font-modern-negra text-5xl text-yellow-200 hover:text-yellow-300 active:text-yellow transition-colors duration-300 max-w-xl max-lg:hidden tracking-wider;
         }
 
         .view-cocktails {

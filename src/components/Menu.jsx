@@ -31,7 +31,7 @@ const Menu = () => {
           trigger: "#menu",
           start: "20% center",
           end: "center 50%",
-          markers: true,
+          markers: false,
         },
       })
       // Fade in the whole content
